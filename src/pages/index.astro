@@ -5,7 +5,7 @@ const base = import.meta.env.BASE_URL;
 
 <BaseLayout title="Home">
   <section class="hero">
-    <div class="hero-bg" style="background-image: url('https://mrhenrycalderon-bot.github.io/wildlife-photography/images/mammals/_22A9288.jpg');"></div>
+    <div class="hero-bg" style={`background-image: url('${base}/images/mammals/_22A9288.jpg');`}></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1 class="hero-title">Wildlife Through the Lens</h1>
@@ -18,28 +18,28 @@ const base = import.meta.env.BASE_URL;
   <section class="featured">
     <h2 class="section-title animate-in">Categories</h2>
     <div class="category-grid">
-      <a href={base + '/gallery/mammals'} class="category-card animate-in" style="--img: url('https://mrhenrycalderon-bot.github.io/wildlife-photography/images/mammals/_22A9288.jpg');">
+      <a href={base + '/gallery/mammals'} class="category-card animate-in" style={`--img: url('${base}/images/mammals/_22A9288.jpg');`}>
         <div class="card-img"></div>
         <div class="card-body">
           <h3>Mammals</h3>
           <p>Lions, elephants, bears, and more</p>
         </div>
       </a>
-      <a href={base + '/gallery/birds'} class="category-card animate-in" style="--img: url('https://mrhenrycalderon-bot.github.io/wildlife-photography/images/birds/_13I0175 copy.jpg');">
+      <a href={base + '/gallery/birds'} class="category-card animate-in" style={`--img: url('${base}/images/birds/_13I0175%20copy.jpg');`}>
         <div class="card-img"></div>
         <div class="card-body">
           <h3>Birds</h3>
           <p>From tiny songbirds to birds of prey</p>
         </div>
       </a>
-      <a href={base + '/gallery/landscapes'} class="category-card animate-in" style="--img: url('https://mrhenrycalderon-bot.github.io/wildlife-photography/images/landscapes/_22A2112.jpg');">
+      <a href={base + '/gallery/landscapes'} class="category-card animate-in" style={`--img: url('${base}/images/landscapes/_22A2112.jpg');`}>
         <div class="card-img"></div>
         <div class="card-body">
           <h3>Landscapes</h3>
           <p>The habitats that make it all possible</p>
         </div>
       </a>
-      <a href={base + '/gallery/travel'} class="category-card animate-in" style="--img: url('https://mrhenrycalderon-bot.github.io/wildlife-photography/images/travel/placeholder.jpg');">
+      <a href={base + '/gallery/travel'} class="category-card animate-in" style={`--img: url('${base}/images/travel/placeholder.jpg');`}>
         <div class="card-img"></div>
         <div class="card-body">
           <h3>Travel</h3>
