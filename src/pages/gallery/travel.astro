@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GalleryGrid from '../../components/GalleryGrid.astro';
+const base = import.meta.env.BASE_URL;
+
+const images = [
+  { src: base + '/images/travel/placeholder.jpg', alt: 'Travel photograph' },
+];
+---
+
+<BaseLayout title="Travel">
+  <section class="page-header">
+    <h1>Travel</h1>
+    <p><a href={base + '/gallery'}>&larr; Back to Gallery</a></p>
+  </section>
+  <GalleryGrid images={images} />
+</BaseLayout>
+
+<style>
+  .page-header {
+    text-align: center;
+    padding: 40px 24px 0;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .page-header a {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .page-header a:hover {
+    color: var(--accent);
+  }
+</style>

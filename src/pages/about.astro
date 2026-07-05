@@ -1,51 +1,137 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="About">
   <section class="about">
-    <div class="about-content">
-      <h1>About</h1>
-      <p>
-        I'm a wildlife photographer passionate about documenting the natural world. 
-        From the frozen peaks of the Himalayas to the sun-scorched savannahs of Africa, 
-        I spend my days tracking, waiting, and capturing moments that tell the story 
-        of life on Earth.
-      </p>
-      <p>
-        Every image here is a reminder of what we stand to lose — and what's worth 
-        fighting to protect.
-      </p>
-      <p class::list={{ muted: true }}>
-        Based in Nairobi, Kenya &bull; Available for assignments worldwide
-      </p>
+    <div class="about-grid">
+      <div class="about-text">
+        <h1>About Me</h1>
+        <p>
+          I'm a wildlife and travel photographer based in Nairobi, Kenya. 
+          My work takes me from the frozen peaks of the Himalayas to the 
+          sun-scorched savannahs of East Africa — anywhere the wild still 
+          roams free.
+        </p>
+        <p>
+          I've been shooting for over a decade, driven by a simple belief: 
+          you protect what you fall in love with, and you fall in love with 
+          what you truly see. Every image here is an invitation to see the 
+          natural world a little more clearly.
+        </p>
+        <p>
+          When I'm not behind a lens, I'm planning the next expedition, 
+          editing in the field, or advocating for conservation initiatives 
+          across the continent.
+        </p>
+      </div>
+      <div class="about-sidebar">
+        <div class="gear-card">
+          <h3>Gear</h3>
+          <ul>
+            <li>Sony A7R V</li>
+            <li>Canon EOS R3</li>
+            <li>70-200mm f/2.8</li>
+            <li>500mm f/4</li>
+            <li>DJI Mavic 3 Pro</li>
+          </ul>
+        </div>
+        <div class="gear-card">
+          <h3>Contact</h3>
+          <p>Available for assignments, prints, and collaborations worldwide.</p>
+          <a href="mailto:hello@wildlifephoto.com" class="contact-btn">Get in touch</a>
+        </div>
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
   .about {
-    max-width: 650px;
+    max-width: var(--max-width);
     margin: 0 auto;
     padding: 80px 24px;
   }
 
-  .about-content h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 24px;
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 48px;
+    align-items: start;
   }
 
-  .about-content p {
+  .about-text h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }
+
+  .about-text p {
     color: var(--text-muted);
     font-size: 1.1rem;
     line-height: 1.8;
     margin-bottom: 20px;
   }
 
-  .muted {
-    color: #555;
+  .about-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .gear-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .gear-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .gear-card ul {
+    list-style: none;
+  }
+
+  .gear-card li {
+    color: var(--text-muted);
     font-size: 0.9rem;
-    margin-top: 40px;
+    padding: 4px 0;
+  }
+
+  .gear-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .contact-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+
+  .contact-btn:hover {
+    opacity: 0.9;
+    color: var(--bg);
+  }
+
+  @media (max-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

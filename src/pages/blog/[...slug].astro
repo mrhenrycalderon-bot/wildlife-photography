@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+const base = import.meta.env.BASE_URL;
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.md$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={post.data.title}>
+  <article class="blog-post">
+    <header>
+      <a href={base + '/blog'} class="back">&larr; Back to Journal</a>
+      <h1>{post.data.title}</h1>
+      <time datetime={post.data.date.toISOString()}>
+        {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </time>
+    </header>
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post { max-width: 700px; margin: 0 auto; padding: 48px 24px 80px; }
+  header { margin-bottom: 40px; }
+  .back { color: var(--text-muted); font-size: 0.85rem; display: inline-block; margin-bottom: 16px; }
+  .back:hover { color: var(--accent); }
+  h1 { font-size: 2rem; font-weight: 700; line-height: 1.2; margin-bottom: 12px; }
+  time { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .content { color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; }
+  .content p { margin-bottom: 20px; }
+  .content h2 { color: var(--text); font-size: 1.4rem; font-weight: 600; margin: 36px 0 12px; }
+  .content ul { margin: 0 0 20px 24px; }
+  .content li { margin-bottom: 6px; }
+</style>
