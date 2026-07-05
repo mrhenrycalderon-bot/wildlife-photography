@@ -7,7 +7,6 @@ export interface GalleryImage {
 
 const { images }: { images: GalleryImage[] } = Astro.props;
 const id = `g-${Math.random().toString(36).slice(2, 9)}`;
-const json = JSON.stringify(images).replace(/</g, '\\u003c');
 ---
 
 <div class="gallery" id={id}>
@@ -33,7 +32,7 @@ const json = JSON.stringify(images).replace(/</g, '\\u003c');
   </div>
 </div>
 
-<script define:vars={{ images }}>
+<script define:vars={{ images, id }}>
   const el = document.getElementById(id);
   const lb = document.getElementById(`${id}-lb`);
   const lbImg = lb.querySelector('.lb-img');
