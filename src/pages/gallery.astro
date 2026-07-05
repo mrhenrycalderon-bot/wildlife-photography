@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Gallery">
@@ -9,17 +10,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <div class="categories">
-    <a href="/gallery/mammals" class="cat-card">
+    <a href={base + '/gallery/mammals'} class="cat-card">
       <h2>Mammals</h2>
       <p>Mountain gorillas, African elephants, snow leopards & more</p>
       <span class="cat-arrow">&rarr;</span>
     </a>
-    <a href="/gallery/birds" class="cat-card">
+    <a href={base + '/gallery/birds'} class="cat-card">
       <h2>Birds</h2>
       <p>Bald eagles, kingfishers, owls, and migratory species</p>
       <span class="cat-arrow">&rarr;</span>
     </a>
-    <a href="/gallery/landscapes" class="cat-card">
+    <a href={base + '/gallery/landscapes'} class="cat-card">
       <h2>Landscapes</h2>
       <p>Sunsets over savannahs, misty forests, alpine vistas</p>
       <span class="cat-arrow">&rarr;</span>

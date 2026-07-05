@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Home">
@@ -8,28 +9,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="hero-content">
       <h1>Wildlife Through the Lens</h1>
       <p>Capturing the raw beauty of nature — one frame at a time.</p>
-      <a href="/gallery" class="btn">Explore Gallery</a>
+      <a href={base + '/gallery'} class="btn">Explore Gallery</a>
     </div>
   </section>
 
   <section class="featured">
     <h2>Categories</h2>
     <div class="category-grid">
-      <a href="/gallery/mammals" class="category-card">
+      <a href={base + '/gallery/mammals'} class="category-card">
         <div class="card-bg" style="background: #1a1a1a;">
           <span class="card-icon">&#x1F98D;</span>
         </div>
         <h3>Mammals</h3>
         <p>Lions, elephants, bears, and more</p>
       </a>
-      <a href="/gallery/birds" class="category-card">
+      <a href={base + '/gallery/birds'} class="category-card">
         <div class="card-bg" style="background: #1a1a1a;">
           <span class="card-icon">&#x1F426;</span>
         </div>
         <h3>Birds</h3>
         <p>From tiny songbirds to birds of prey</p>
       </a>
-      <a href="/gallery/landscapes" class="category-card">
+      <a href={base + '/gallery/landscapes'} class="category-card">
         <div class="card-bg" style="background: #1a1a1a;">
           <span class="card-icon">&#x1F3DE;</span>
         </div>

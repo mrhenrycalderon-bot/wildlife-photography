@@ -1,21 +1,22 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import GalleryGrid from '../../components/GalleryGrid.astro';
+const base = import.meta.env.BASE_URL;
 
 const images = [
-  { src: '/images/birds/placeholder.jpg', alt: 'Bald eagle in flight', caption: 'Bald eagle — Alaska, USA' },
-  { src: '/images/birds/placeholder.jpg', alt: 'Kingfisher diving for prey', caption: 'Kingfisher — Borneo, Malaysia' },
-  { src: '/images/birds/placeholder.jpg', alt: 'Great horned owl at dusk', caption: 'Great horned owl — Montana, USA' },
-  { src: '/images/birds/placeholder.jpg', alt: 'Flamingo flock at sunrise', caption: 'Lesser flamingos — Lake Natron, Tanzania' },
-  { src: '/images/birds/placeholder.jpg', alt: 'Hummerbird hovering on a flower', caption: 'Ruby-throated hummingbird — Costa Rica' },
-  { src: '/images/birds/placeholder.jpg', alt: 'Peregrine falcon stooping', caption: 'Peregrine falcon — Scotland, UK' },
+  { src: base + '/images/birds/placeholder.jpg', alt: 'Bald eagle in flight', caption: 'Bald eagle — Alaska, USA' },
+  { src: base + '/images/birds/placeholder.jpg', alt: 'Kingfisher diving for prey', caption: 'Kingfisher — Borneo, Malaysia' },
+  { src: base + '/images/birds/placeholder.jpg', alt: 'Great horned owl at dusk', caption: 'Great horned owl — Montana, USA' },
+  { src: base + '/images/birds/placeholder.jpg', alt: 'Flamingo flock at sunrise', caption: 'Lesser flamingos — Lake Natron, Tanzania' },
+  { src: base + '/images/birds/placeholder.jpg', alt: 'Hummerbird hovering on a flower', caption: 'Ruby-throated hummingbird — Costa Rica' },
+  { src: base + '/images/birds/placeholder.jpg', alt: 'Peregrine falcon stooping', caption: 'Peregrine falcon — Scotland, UK' },
 ];
 ---
 
 <BaseLayout title="Birds">
   <section class="page-header">
     <h1>Birds</h1>
-    <p><a href="/gallery">&larr; Back to Gallery</a></p>
+    <p><a href={base + '/gallery'}>&larr; Back to Gallery</a></p>
   </section>
   <GalleryGrid images={images} />
 </BaseLayout>
