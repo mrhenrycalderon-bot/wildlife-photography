@@ -15,12 +15,26 @@ const base = import.meta.env.BASE_URL;
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description || 'Wildlife photography portfolio'} />
     <title>{title ? `${title} — Wildlife` : 'Wildlife Photography'}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
     <Header />
     <main>
       <slot />
     </main>
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.animate-in').forEach((el) => observer.observe(el));
+    </script>
   </body>
 </html>
 

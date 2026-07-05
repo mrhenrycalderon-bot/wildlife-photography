@@ -10,30 +10,54 @@ const images = [
 ---
 
 <BaseLayout title="Mammals">
-  <section class="page-header">
-    <h1>Mammals</h1>
-    <p><a href={base + '/gallery'}>&larr; Back to Gallery</a></p>
+  <section class="category-hero" style="background-image: url('https://mrhenrycalderon-bot.github.io/wildlife-photography/images/mammals/_22A9288.jpg');">
+    <div class="category-hero-overlay"></div>
+    <div class="category-hero-content">
+      <h1>Mammals</h1>
+      <p><a href={base + '/gallery'} class="back-link">&larr; All Galleries</a></p>
+    </div>
   </section>
   <GalleryGrid images={images} />
 </BaseLayout>
 
 <style>
-  .page-header {
-    text-align: center;
-    padding: 40px 24px 0;
+  .category-hero {
+    position: relative;
+    height: 45vh;
+    min-height: 300px;
+    display: flex;
+    align-items: flex-end;
+    background-size: cover;
+    background-position: center;
   }
 
-  .page-header h1 {
-    font-size: 2rem;
+  .category-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10,10,10,0.1) 0%, rgba(10,10,10,0.7) 100%);
+    pointer-events: none;
+  }
+
+  .category-hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 48px 32px;
+  }
+
+  .category-hero-content h1 {
+    font-family: var(--font-display);
+    font-size: 3rem;
     font-weight: 700;
+    margin-bottom: 8px;
+    color: #fff;
   }
 
-  .page-header a {
-    color: var(--text-muted);
-    font-size: 0.85rem;
+  .back-link {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
   }
 
-  .page-header a:hover {
+  .back-link:hover {
     color: var(--accent);
   }
 </style>

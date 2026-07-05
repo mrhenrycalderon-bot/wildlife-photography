@@ -5,44 +5,46 @@ const base = import.meta.env.BASE_URL;
 
 <BaseLayout title="Home">
   <section class="hero">
+    <div class="hero-bg" style="background-image: url('https://mrhenrycalderon-bot.github.io/wildlife-photography/images/mammals/_22A9288.jpg');"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1>Wildlife Through the Lens</h1>
-      <p>Capturing the raw beauty of nature — one frame at a time.</p>
+      <h1 class="hero-title">Wildlife Through the Lens</h1>
+      <p class="hero-subtitle">Capturing the raw beauty of nature — one frame at a time.</p>
       <a href={base + '/gallery'} class="btn">Explore Gallery</a>
     </div>
+    <div class="hero-scroll">Scroll &darr;</div>
   </section>
 
   <section class="featured">
-    <h2>Categories</h2>
+    <h2 class="section-title animate-in">Categories</h2>
     <div class="category-grid">
-      <a href={base + '/gallery/mammals'} class="category-card">
-        <div class="card-bg" style="background: #1a1a1a;">
-          <span class="card-icon">&#x1F98D;</span>
+      <a href={base + '/gallery/mammals'} class="category-card animate-in" style="--img: url('https://mrhenrycalderon-bot.github.io/wildlife-photography/images/mammals/_22A9288.jpg');">
+        <div class="card-img"></div>
+        <div class="card-body">
+          <h3>Mammals</h3>
+          <p>Lions, elephants, bears, and more</p>
         </div>
-        <h3>Mammals</h3>
-        <p>Lions, elephants, bears, and more</p>
       </a>
-      <a href={base + '/gallery/birds'} class="category-card">
-        <div class="card-bg" style="background: #1a1a1a;">
-          <span class="card-icon">&#x1F426;</span>
+      <a href={base + '/gallery/birds'} class="category-card animate-in" style="--img: url('https://mrhenrycalderon-bot.github.io/wildlife-photography/images/birds/_13I0175 copy.jpg');">
+        <div class="card-img"></div>
+        <div class="card-body">
+          <h3>Birds</h3>
+          <p>From tiny songbirds to birds of prey</p>
         </div>
-        <h3>Birds</h3>
-        <p>From tiny songbirds to birds of prey</p>
       </a>
-      <a href={base + '/gallery/landscapes'} class="category-card">
-        <div class="card-bg" style="background: #1a1a1a;">
-          <span class="card-icon">&#x1F3DE;</span>
+      <a href={base + '/gallery/landscapes'} class="category-card animate-in" style="--img: url('https://mrhenrycalderon-bot.github.io/wildlife-photography/images/landscapes/_22A2112.jpg');">
+        <div class="card-img"></div>
+        <div class="card-body">
+          <h3>Landscapes</h3>
+          <p>The habitats that make it all possible</p>
         </div>
-        <h3>Landscapes</h3>
-        <p>The habitats that make it all possible</p>
       </a>
-      <a href={base + '/gallery/travel'} class="category-card">
-        <div class="card-bg" style="background: #1a1a1a;">
-          <span class="card-icon">&#x2708;</span>
+      <a href={base + '/gallery/travel'} class="category-card animate-in" style="--img: url('https://mrhenrycalderon-bot.github.io/wildlife-photography/images/travel/placeholder.jpg');">
+        <div class="card-img"></div>
+        <div class="card-body">
+          <h3>Travel</h3>
+          <p>Journeys beyond the wild</p>
         </div>
-        <h3>Travel</h3>
-        <p>Journeys beyond the wild</p>
       </a>
     </div>
   </section>
@@ -51,29 +53,33 @@ const base = import.meta.env.BASE_URL;
 <style>
   .hero {
     position: relative;
-    height: 80vh;
-    min-height: 500px;
+    height: 90vh;
+    min-height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1410 50%, #0d0d0d 100%);
     overflow: hidden;
   }
 
-  .hero::before {
-    content: '';
+  .hero-bg {
     position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at 30% 50%, rgba(200, 169, 126, 0.08) 0%, transparent 60%),
-      radial-gradient(ellipse at 70% 50%, rgba(200, 169, 126, 0.05) 0%, transparent 60%);
+    inset: -8px;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5) saturate(1.1);
+    transform: scale(1.05);
+    transition: transform 8s ease;
+  }
+
+  .hero:hover .hero-bg {
+    transform: scale(1);
   }
 
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><text y="90" font-size="90">▲</text></svg>') repeat;
-    background-size: 100px 100px;
+    background: linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.6) 50%, var(--bg) 100%);
+    pointer-events: none;
   }
 
   .hero-content {
@@ -81,32 +87,32 @@ const base = import.meta.env.BASE_URL;
     text-align: center;
     padding: 24px;
     z-index: 1;
+    max-width: 700px;
   }
 
-  .hero-content h1 {
-    font-size: clamp(2.5rem, 6vw, 5rem);
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
     font-weight: 700;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
     line-height: 1.1;
     margin-bottom: 16px;
-    background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #fff;
   }
 
-  .hero-content p {
+  .hero-subtitle {
     font-size: clamp(1rem, 2vw, 1.25rem);
-    color: var(--text-muted);
-    margin-bottom: 32px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 36px;
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
+    font-weight: 400;
   }
 
   .btn {
     display: inline-block;
-    padding: 14px 36px;
+    padding: 16px 40px;
     background: var(--accent);
     color: var(--bg);
     font-weight: 600;
@@ -117,8 +123,27 @@ const base = import.meta.env.BASE_URL;
 
   .btn:hover {
     opacity: 0.9;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 20px rgba(200, 169, 126, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(200, 169, 126, 0.3);
+    color: var(--bg);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.4);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    z-index: 1;
+    animation: float 2s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
   }
 
   .featured {
@@ -127,11 +152,12 @@ const base = import.meta.env.BASE_URL;
     margin: 0 auto;
   }
 
-  .featured h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 32px;
-    color: var(--text-muted);
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: var(--text);
   }
 
   .category-grid {
@@ -141,44 +167,55 @@ const base = import.meta.env.BASE_URL;
   }
 
   .category-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
     background: var(--bg-elevated);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 32px;
-    transition: all 0.3s;
+    overflow: hidden;
+    transition: all 0.4s ease;
     color: var(--text);
   }
 
   .category-card:hover {
     border-color: var(--accent);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
     color: var(--text);
   }
 
-  .card-bg {
-    width: 64px;
-    height: 64px;
-    border-radius: 12px;
+  .card-img {
+    height: 200px;
+    background-image: var(--img);
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+  }
+
+  .category-card:hover .card-img {
+    transform: scale(1.06);
+  }
+
+  .card-body {
+    padding: 24px;
+    flex: 1;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    margin-bottom: 20px;
   }
 
-  .card-icon {
-    font-size: 2rem;
-  }
-
-  .category-card h3 {
+  .card-body h3 {
     font-size: 1.25rem;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
 
-  .category-card p {
+  .card-body p {
     color: var(--text-muted);
     font-size: 0.9rem;
+  }
+
+  @media (max-width: 640px) {
+    .hero { height: 70vh; min-height: 400px; }
   }
 </style>

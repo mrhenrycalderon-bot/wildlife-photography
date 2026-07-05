@@ -10,25 +10,37 @@ const base = import.meta.env.BASE_URL;
   </section>
 
   <div class="categories">
-    <a href={base + '/gallery/mammals'} class="cat-card">
-      <h2>Mammals</h2>
-      <p>Mountain gorillas, African elephants, snow leopards & more</p>
-      <span class="cat-arrow">&rarr;</span>
+    <a href={base + '/gallery/mammals'} class="cat-card animate-in" style="--img: url('https://mrhenrycalderon-bot.github.io/wildlife-photography/images/mammals/_22A9288.jpg');">
+      <div class="cat-img"></div>
+      <div class="cat-body">
+        <h2>Mammals</h2>
+        <p>Mountain gorillas, African elephants, snow leopards & more</p>
+        <span class="cat-arrow">&rarr;</span>
+      </div>
     </a>
-    <a href={base + '/gallery/birds'} class="cat-card">
-      <h2>Birds</h2>
-      <p>Bald eagles, kingfishers, owls, and migratory species</p>
-      <span class="cat-arrow">&rarr;</span>
+    <a href={base + '/gallery/birds'} class="cat-card animate-in" style="--img: url('https://mrhenrycalderon-bot.github.io/wildlife-photography/images/birds/_13I0175 copy.jpg');">
+      <div class="cat-img"></div>
+      <div class="cat-body">
+        <h2>Birds</h2>
+        <p>Bald eagles, kingfishers, owls, and migratory species</p>
+        <span class="cat-arrow">&rarr;</span>
+      </div>
     </a>
-    <a href={base + '/gallery/landscapes'} class="cat-card">
-      <h2>Landscapes</h2>
-      <p>Sunsets over savannahs, misty forests, alpine vistas</p>
-      <span class="cat-arrow">&rarr;</span>
+    <a href={base + '/gallery/landscapes'} class="cat-card animate-in" style="--img: url('https://mrhenrycalderon-bot.github.io/wildlife-photography/images/landscapes/_22A2112.jpg');">
+      <div class="cat-img"></div>
+      <div class="cat-body">
+        <h2>Landscapes</h2>
+        <p>Sunsets over savannahs, misty forests, alpine vistas</p>
+        <span class="cat-arrow">&rarr;</span>
+      </div>
     </a>
-    <a href={base + '/gallery/travel'} class="cat-card">
-      <h2>Travel</h2>
-      <p>Expeditions, road trips, and the journey between destinations</p>
-      <span class="cat-arrow">&rarr;</span>
+    <a href={base + '/gallery/travel'} class="cat-card animate-in" style="--img: url('https://mrhenrycalderon-bot.github.io/wildlife-photography/images/travel/placeholder.jpg');">
+      <div class="cat-img"></div>
+      <div class="cat-body">
+        <h2>Travel</h2>
+        <p>Expeditions, road trips, and the journey between destinations</p>
+        <span class="cat-arrow">&rarr;</span>
+      </div>
     </a>
   </div>
 </BaseLayout>
@@ -40,7 +52,8 @@ const base = import.meta.env.BASE_URL;
   }
 
   .page-header h1 {
-    font-size: 2.5rem;
+    font-family: var(--font-display);
+    font-size: 2.8rem;
     font-weight: 700;
     margin-bottom: 8px;
   }
@@ -56,7 +69,7 @@ const base = import.meta.env.BASE_URL;
     padding: 0 24px 80px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    gap: 24px;
   }
 
   .cat-card {
@@ -65,41 +78,60 @@ const base = import.meta.env.BASE_URL;
     background: var(--bg-elevated);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 32px;
-    transition: all 0.3s;
+    overflow: hidden;
+    transition: all 0.4s ease;
     color: var(--text);
     position: relative;
   }
 
   .cat-card:hover {
     border-color: var(--accent);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
     color: var(--text);
   }
 
-  .cat-card h2 {
-    font-size: 1.3rem;
+  .cat-img {
+    height: 220px;
+    background-image: var(--img);
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+  }
+
+  .cat-card:hover .cat-img {
+    transform: scale(1.06);
+  }
+
+  .cat-body {
+    padding: 28px;
+    position: relative;
+  }
+
+  .cat-body h2 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
     font-weight: 600;
     margin-bottom: 8px;
   }
 
-  .cat-card p {
+  .cat-body p {
     color: var(--text-muted);
     font-size: 0.9rem;
-    line-height: 1.5;
+    line-height: 1.6;
+    max-width: 85%;
   }
 
   .cat-arrow {
     position: absolute;
-    bottom: 24px;
-    right: 24px;
+    bottom: 28px;
+    right: 28px;
     font-size: 1.5rem;
     color: var(--accent);
     transition: transform 0.2s;
   }
 
   .cat-card:hover .cat-arrow {
-    transform: translateX(4px);
+    transform: translateX(6px);
   }
 </style>
