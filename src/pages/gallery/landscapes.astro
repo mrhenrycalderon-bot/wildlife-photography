@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GalleryGrid from '../../components/GalleryGrid.astro';
+
+const images = [
+  { src: '/images/landscapes/placeholder.jpg', alt: 'Misty morning over a mountain lake', caption: 'Moraine Lake — Banff, Canada' },
+  { src: '/images/landscapes/placeholder.jpg', alt: 'Savannah at golden hour', caption: 'Serengeti plains — Tanzania' },
+  { src: '/images/landscapes/placeholder.jpg', alt: 'Aurora borealis over snowy peaks', caption: 'Northern Lights — Tromsø, Norway' },
+  { src: '/images/landscapes/placeholder.jpg', alt: 'Monsoon clouds over lush valley', caption: 'Western Ghats — Kerala, India' },
+  { src: '/images/landscapes/placeholder.jpg', alt: 'Desert dunes at sunrise', caption: 'Namib Desert — Namibia' },
+  { src: '/images/landscapes/placeholder.jpg', alt: 'Autumn forest reflection', caption: 'Jasper National Park — Canada' },
+];
+---
+
+<BaseLayout title="Landscapes">
+  <section class="page-header">
+    <h1>Landscapes</h1>
+    <p><a href="/gallery">&larr; Back to Gallery</a></p>
+  </section>
+  <GalleryGrid images={images} />
+</BaseLayout>
+
+<style>
+  .page-header {
+    text-align: center;
+    padding: 40px 24px 0;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .page-header a {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .page-header a:hover {
+    color: var(--accent);
+  }
+</style>

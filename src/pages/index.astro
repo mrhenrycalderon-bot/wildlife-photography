@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Home">
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Wildlife Through the Lens</h1>
+      <p>Capturing the raw beauty of nature — one frame at a time.</p>
+      <a href="/gallery" class="btn">Explore Gallery</a>
+    </div>
+  </section>
+
+  <section class="featured">
+    <h2>Categories</h2>
+    <div class="category-grid">
+      <a href="/gallery/mammals" class="category-card">
+        <div class="card-bg" style="background: #1a1a1a;">
+          <span class="card-icon">&#x1F98D;</span>
+        </div>
+        <h3>Mammals</h3>
+        <p>Lions, elephants, bears, and more</p>
+      </a>
+      <a href="/gallery/birds" class="category-card">
+        <div class="card-bg" style="background: #1a1a1a;">
+          <span class="card-icon">&#x1F426;</span>
+        </div>
+        <h3>Birds</h3>
+        <p>From tiny songbirds to birds of prey</p>
+      </a>
+      <a href="/gallery/landscapes" class="category-card">
+        <div class="card-bg" style="background: #1a1a1a;">
+          <span class="card-icon">&#x1F3DE;</span>
+        </div>
+        <h3>Landscapes</h3>
+        <p>The habitats that make it all possible</p>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    height: 80vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1410 50%, #0d0d0d 100%);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 50%, rgba(200, 169, 126, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 50%, rgba(200, 169, 126, 0.05) 0%, transparent 60%);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><text y="90" font-size="90">▲</text></svg>') repeat;
+    background-size: 100px 100px;
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    padding: 24px;
+    z-index: 1;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-content p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 36px;
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+
+  .btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(200, 169, 126, 0.3);
+  }
+
+  .featured {
+    padding: 80px 24px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .featured h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 32px;
+    color: var(--text-muted);
+  }
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .category-card {
+    display: block;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    transition: all 0.3s;
+    color: var(--text);
+  }
+
+  .category-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    color: var(--text);
+  }
+
+  .card-bg {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+  }
+
+  .category-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .category-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+</style>

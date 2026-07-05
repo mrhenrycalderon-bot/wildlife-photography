@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Gallery">
+  <section class="page-header">
+    <h1>Gallery</h1>
+    <p>Browse by category</p>
+  </section>
+
+  <div class="categories">
+    <a href="/gallery/mammals" class="cat-card">
+      <h2>Mammals</h2>
+      <p>Mountain gorillas, African elephants, snow leopards & more</p>
+      <span class="cat-arrow">&rarr;</span>
+    </a>
+    <a href="/gallery/birds" class="cat-card">
+      <h2>Birds</h2>
+      <p>Bald eagles, kingfishers, owls, and migratory species</p>
+      <span class="cat-arrow">&rarr;</span>
+    </a>
+    <a href="/gallery/landscapes" class="cat-card">
+      <h2>Landscapes</h2>
+      <p>Sunsets over savannahs, misty forests, alpine vistas</p>
+      <span class="cat-arrow">&rarr;</span>
+    </a>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    text-align: center;
+    padding: 80px 24px 40px;
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .page-header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+  }
+
+  .categories {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .cat-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    transition: all 0.3s;
+    color: var(--text);
+    position: relative;
+  }
+
+  .cat-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    color: var(--text);
+  }
+
+  .cat-card h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .cat-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .cat-arrow {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    font-size: 1.5rem;
+    color: var(--accent);
+    transition: transform 0.2s;
+  }
+
+  .cat-card:hover .cat-arrow {
+    transform: translateX(4px);
+  }
+</style>

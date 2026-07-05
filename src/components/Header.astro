@@ -1,0 +1,76 @@
+---
+const currentPath = Astro.url.pathname;
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/about', label: 'About' },
+];
+---
+
+<header>
+  <nav>
+    <a href="/" class="logo">Wildlife</a>
+    <ul>
+      {links.map((link) => (
+        <li>
+          <a href={link.href} class:list={{ active: currentPath === link.href }}>
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: var(--header-h);
+    background: linear-gradient(180deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.5) 80%, transparent 100%);
+    backdrop-filter: blur(12px);
+  }
+
+  nav {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .logo::before {
+    content: "▲ ";
+    color: var(--accent);
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+  }
+
+  ul a {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  ul a:hover,
+  ul a.active {
+    color: var(--text);
+  }
+</style>

@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About">
+  <section class="about">
+    <div class="about-content">
+      <h1>About</h1>
+      <p>
+        I'm a wildlife photographer passionate about documenting the natural world. 
+        From the frozen peaks of the Himalayas to the sun-scorched savannahs of Africa, 
+        I spend my days tracking, waiting, and capturing moments that tell the story 
+        of life on Earth.
+      </p>
+      <p>
+        Every image here is a reminder of what we stand to lose — and what's worth 
+        fighting to protect.
+      </p>
+      <p class::list={{ muted: true }}>
+        Based in Nairobi, Kenya &bull; Available for assignments worldwide
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  .about-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .about-content p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  .muted {
+    color: #555;
+    font-size: 0.9rem;
+    margin-top: 40px;
+  }
+</style>

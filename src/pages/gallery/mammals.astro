@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GalleryGrid from '../../components/GalleryGrid.astro';
+
+const images = [
+  { src: '/images/mammals/placeholder.jpg', alt: 'Mountain gorilla in misty rainforest', caption: 'Mountain gorilla — Volcanoes National Park, Rwanda' },
+  { src: '/images/mammals/placeholder.jpg', alt: 'African elephant at sunset', caption: 'African elephant — Amboseli, Kenya' },
+  { src: '/images/mammals/placeholder.jpg', alt: 'Snow leopard on rocky terrain', caption: 'Snow leopard — Ladakh, India' },
+  { src: '/images/mammals/placeholder.jpg', alt: 'Grizzly bear fishing for salmon', caption: 'Grizzly bear — Katmai, Alaska' },
+  { src: '/images/mammals/placeholder.jpg', alt: 'Red fox in winter coat', caption: 'Red fox — Yellowstone, USA' },
+  { src: '/images/mammals/placeholder.jpg', alt: 'Cheetah on the hunt', caption: 'Cheetah — Maasai Mara, Kenya' },
+];
+---
+
+<BaseLayout title="Mammals">
+  <section class="page-header">
+    <h1>Mammals</h1>
+    <p><a href="/gallery">&larr; Back to Gallery</a></p>
+  </section>
+  <GalleryGrid images={images} />
+</BaseLayout>
+
+<style>
+  .page-header {
+    text-align: center;
+    padding: 40px 24px 0;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .page-header a {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .page-header a:hover {
+    color: var(--accent);
+  }
+</style>

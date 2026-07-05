@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GalleryGrid from '../../components/GalleryGrid.astro';
+
+const images = [
+  { src: '/images/birds/placeholder.jpg', alt: 'Bald eagle in flight', caption: 'Bald eagle — Alaska, USA' },
+  { src: '/images/birds/placeholder.jpg', alt: 'Kingfisher diving for prey', caption: 'Kingfisher — Borneo, Malaysia' },
+  { src: '/images/birds/placeholder.jpg', alt: 'Great horned owl at dusk', caption: 'Great horned owl — Montana, USA' },
+  { src: '/images/birds/placeholder.jpg', alt: 'Flamingo flock at sunrise', caption: 'Lesser flamingos — Lake Natron, Tanzania' },
+  { src: '/images/birds/placeholder.jpg', alt: 'Hummerbird hovering on a flower', caption: 'Ruby-throated hummingbird — Costa Rica' },
+  { src: '/images/birds/placeholder.jpg', alt: 'Peregrine falcon stooping', caption: 'Peregrine falcon — Scotland, UK' },
+];
+---
+
+<BaseLayout title="Birds">
+  <section class="page-header">
+    <h1>Birds</h1>
+    <p><a href="/gallery">&larr; Back to Gallery</a></p>
+  </section>
+  <GalleryGrid images={images} />
+</BaseLayout>
+
+<style>
+  .page-header {
+    text-align: center;
+    padding: 40px 24px 0;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .page-header a {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .page-header a:hover {
+    color: var(--accent);
+  }
+</style>

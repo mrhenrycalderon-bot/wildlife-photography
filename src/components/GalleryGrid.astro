@@ -1,0 +1,201 @@
+---
+export interface GalleryImage {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+const { images }: { images: GalleryImage[] } = Astro.props;
+const id = `g-${Math.random().toString(36).slice(2, 9)}`;
+const json = JSON.stringify(images).replace(/</g, '\\u003c');
+---
+
+<div class="gallery" id={id}>
+  {images.map((img, i) => (
+    <button
+      class="gallery-item"
+      data-index={i}
+      aria-label={`View ${img.alt}`}
+    >
+      <img src={img.src} alt={img.alt} loading="lazy" />
+      {img.caption && <span class="caption">{img.caption}</span>}
+    </button>
+  ))}
+</div>
+
+<div class="lightbox" id={`${id}-lb`} role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" aria-label="Close">&times;</button>
+  <button class="lb-prev" aria-label="Previous">&#8249;</button>
+  <button class="lb-next" aria-label="Next">&#8250;</button>
+  <div class="lb-body">
+    <img class="lb-img" src="" alt="" />
+    <p class="lb-caption"></p>
+  </div>
+</div>
+
+<script define:vars={{ images }}>
+  const el = document.getElementById(id);
+  const lb = document.getElementById(`${id}-lb`);
+  const lbImg = lb.querySelector('.lb-img');
+  const lbCap = lb.querySelector('.lb-caption');
+  const close = lb.querySelector('.lb-close');
+  const prev = lb.querySelector('.lb-prev');
+  const next = lb.querySelector('.lb-next');
+  const items = el.querySelectorAll('.gallery-item');
+  let cur = 0;
+
+  function open(i) {
+    cur = i;
+    const img = images[i];
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbCap.textContent = img.caption || '';
+    lbCap.style.display = img.caption ? '' : 'none';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function prevLb() { open((cur - 1 + items.length) % items.length); }
+  function nextLb() { open((cur + 1) % items.length); }
+
+  items.forEach((item, i) => item.addEventListener('click', () => open(i)));
+  close.addEventListener('click', closeLb);
+  prev.addEventListener('click', prevLb);
+  next.addEventListener('click', nextLb);
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') prevLb();
+    if (e.key === 'ArrowRight') nextLb();
+  });
+</script>
+
+<style>
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 8px;
+    padding: 24px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .gallery-item {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border: none;
+    background: var(--bg-elevated);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .gallery-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .gallery-item .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: #fff;
+    font-size: 0.85rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .gallery-item:hover .caption {
+    opacity: 1;
+  }
+
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lb-body {
+    position: relative;
+    max-width: 90vw;
+    max-height: 85vh;
+  }
+
+  .lb-img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .lb-caption {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 12px;
+  }
+
+  .lb-close,
+  .lb-prev,
+  .lb-next {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 1010;
+  }
+
+  .lb-close:hover,
+  .lb-prev:hover,
+  .lb-next:hover { background: rgba(255, 255, 255, 0.16); }
+
+  .lb-close { top: 16px; right: 16px; font-size: 1.8rem; }
+  .lb-prev { left: 16px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; }
+  .lb-next { right: 16px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; }
+
+  @media (max-width: 640px) {
+    .gallery { grid-template-columns: 1fr; gap: 4px; padding: 8px; }
+    .lb-prev, .lb-next { width: 40px; height: 40px; font-size: 1.5rem; }
+    .lb-prev { left: 8px; }
+    .lb-next { right: 8px; }
+  }
+</style>
